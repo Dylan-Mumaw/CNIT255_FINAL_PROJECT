@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ShoppingMaster.master.cs" Inherits="ShoppingMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Menu ID="NavMenu" runat="server" >
+
+            <Items>
+                <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home" ToolTip="Home Page" Value="Home"></asp:MenuItem>
+                <asp:MenuItem Selectable="False" Text="Shopping" ToolTip="Links to various shopping-related pages" Value="Shopping">
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Cart.aspx" Text="Your Cart" ToolTip="View currently selected products" Value="Your Cart"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Selectable="False" Text="User Info" ToolTip="View past orders, invoices, etc." Value="User Info">
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Orders.aspx" Text="Orders" ToolTip="View past orders." Value="Orders"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Invoices.aspx" Text="Invoices" ToolTip="View invoices for past orders." Value="Invoices"></asp:MenuItem>
+                </asp:MenuItem>
+            </Items>
+        </asp:Menu>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
