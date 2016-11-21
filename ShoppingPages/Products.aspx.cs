@@ -5,14 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class ShoppingPages_Cart : System.Web.UI.Page
+public partial class ShoppingPages_Products : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
-    }
-    protected void checkoutButton_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/ShoppingPages/Checkout.aspx");
     }
 }
