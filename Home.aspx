@@ -13,7 +13,7 @@
     <form id="form1" runat="server">
     <div class="wrapper">
         <p>High-quality pottery. Plain and simple.</p>
-        Image of logo or art goes here
+        <asp:Image ID="homeImg" ImageUrl="~/FinalProjectProducts/StonewareCandleHolder.jpg" Height="400px" Width="300px" runat="server" />
         <p>About the Artist <br />
            Smoking Kiln offers high-quality, hand-crafted pottery. 
            <br /> Each piece is made by hand and is completely new unique, 
