@@ -17,6 +17,7 @@
                 <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home" ToolTip="Home Page" Value="Home"></asp:MenuItem>
                 <asp:MenuItem Selectable="False" Text="Shopping" ToolTip="Links to various shopping-related pages" Value="Shopping">
                     <asp:MenuItem NavigateUrl="~/ShoppingPages/Cart.aspx" Text="Your Cart" ToolTip="View currently selected products" Value="Your Cart"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Products.aspx" Text="Products" ToolTip="Products" Value="Products"></asp:MenuItem>
                 </asp:MenuItem>
                 <asp:MenuItem Selectable="False" Text="User Info" ToolTip="View past orders, invoices, etc." Value="User Info">
                     <asp:MenuItem NavigateUrl="~/ShoppingPages/Orders.aspx" Text="Orders" ToolTip="View past orders." Value="Orders"></asp:MenuItem>
