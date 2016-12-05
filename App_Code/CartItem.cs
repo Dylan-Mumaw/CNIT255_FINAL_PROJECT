@@ -16,11 +16,18 @@
         this.Quantity += quantity;
     }
 
+    /*public int TotalUnitPrice(int total, decimal price)
+    {
+        Product.UnitPrice = price;
+        Quantity * price = total;
+        return total;
+    }*/
+
     public string Display()
     {
         string displayString =
             Product.Name + " (" + Quantity.ToString()
-            + " at " + Product.UnitPrice.ToString("c") + " each)";
+            + " at " + Product.UnitPrice.ToString("c") + " each = " + Product.UnitPrice * Quantity +")";
 
         return displayString;
     }
