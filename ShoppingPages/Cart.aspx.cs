@@ -37,4 +37,27 @@ public partial class ShoppingPages_Cart : System.Web.UI.Page
     {
         Response.Redirect("~/ShoppingPages/Products.aspx");
     }
+    protected void removeButton_Click(object sender, EventArgs e)
+    {
+        if (cart.Count > 0)
+        {
+            if (cartList.SelectedIndex > -1)
+            {
+                cart.RemoveAt(cartList.SelectedIndex);
+                this.DisplayCart();
+            }
+            else
+            {
+                //lblMessage.Text = "Please select the item you want to remove.";
+            }
+        }
+    }
+    protected void clearButton_Click(object sender, EventArgs e)
+    {
+        if (cart.Count > 0)
+        {
+            cart.Clear();
+            cartList.Items.Clear();
+        }
+    }
 }

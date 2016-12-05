@@ -7,6 +7,7 @@
     <link href="Styles/HomeStyle.css" rel="stylesheet" />
     <title>Smoking Kiln Pottery</title>
     <h1>Smoking Kiln</h1>
+    <center><asp:HyperLink NavigateUrl = "~/ShoppingPages/Products.aspx" runat="server">Products</asp:HyperLink>&nbsp<asp:HyperLink NavigateUrl = "~/ShoppingPages/Orders.aspx" runat="server">Orders</asp:HyperLink>&nbsp<asp:HyperLink NavigateUrl = "~/ShoppingPages/Cart.aspx" runat="server">Cart</asp:HyperLink></center>
     <center><p>Contact: joeschmo@smokingkiln.com</p></center>
 </head>
 <body>
