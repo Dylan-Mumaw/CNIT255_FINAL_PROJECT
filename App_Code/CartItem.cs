@@ -25,10 +25,17 @@
 
     public string Display()
     {
-        string displayString =
-            Product.Name + " (" + Quantity.ToString()
-            + " at " + Product.UnitPrice.ToString("c") + " each = " + Product.UnitPrice * Quantity +")";
+        decimal total = Product.UnitPrice * Quantity;
 
+        decimal productTotal = 0;
+        productTotal += total;
+
+        string totalString = total.ToString("c");
+        string displayString =
+            Product.Name + " " + Quantity.ToString()
+            + " at " + Product.UnitPrice.ToString("c") + " each = " + totalString;
+             //+ productTotal.ToString("c");
+        
         return displayString;
     }
 

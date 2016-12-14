@@ -16,6 +16,8 @@ public partial class ShoppingPages_Cart : System.Web.UI.Page
         {
             this.DisplayCart();
         }
+
+        
     }
 
     private void DisplayCart()
@@ -26,11 +28,13 @@ public partial class ShoppingPages_Cart : System.Web.UI.Page
         {
             item = cart[i];
             cartList.Items.Add(item.Display());
+            
         }
     }
 
     protected void checkoutButton_Click(object sender, EventArgs e)
     {
+        Session["listBox"] = cartList;
         Response.Redirect("~/ShoppingPages/Checkout.aspx");
     }
     protected void productButton_Click(object sender, EventArgs e)

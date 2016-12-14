@@ -13,10 +13,13 @@ public class Customer
     public string City { get; set; }
     public string State { get; set; }
     public int Zip { get; set; }
-    public char Phone { get; set; }
-    public char Email { get; set; }
+    public string Phone { get; set; }
+    public string Email { get; set; }
     public bool newProducts { get; set; }
     public bool discounts { get; set; }
     public bool artFairs { get; set; }
     public bool specialOffers { get; set; }
+    public string cardNumber { get; set; }
+    public string expDate { get; set; }
+    public string secNumber { get; set; }
 }

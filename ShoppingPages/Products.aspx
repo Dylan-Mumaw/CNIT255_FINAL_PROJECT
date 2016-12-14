@@ -5,99 +5,44 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:PotteryConnectionString %>' SelectCommand="SELECT [Name], [ShortDescription], [ImageFile], [UnitPrice] FROM [Products]"></asp:SqlDataSource>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" >
+        <Services>
+            <asp:ServiceReference Path="C:\Users\Dylan\Documents\Visual Studio 2012\Projects\localhost_59400\packages\AjaxControlToolkit.16.1.1.0" />
+        </Services>
+    </asp:ScriptManager>
+    <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:PotteryConnectionString %>' SelectCommand="SELECT * FROM [Products]"></asp:SqlDataSource>
+    <p><b>Select Your Product(s):</b></p>
+    <asp:DropDownList  OnSelectedIndexChanged="ddlProductSelect_SelectedIndexChanged" ID="ddlProductSelect" AutoPostBack="true" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="ProductID"></asp:DropDownList>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+        <asp:Image runat="server" ID="productIMG" CssClass="img"></asp:Image>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+        <br />
+        <br />
+       <asp:Label ID="selectionLabel" runat="server" Text="Item:" style="font-weight: 700" Font-Size="XX-Large"></asp:Label>
+        <br />
+        <br />
+        <br />
+       <asp:Label ID="descriptionLabel" runat="server" Text="Product Description:" Font-Size="X-Large" ></asp:Label>
+        <br />
+        <br />
+       <asp:Label ID="priceLabel" runat="server" Text="Cost:" style="font-weight: 700"></asp:Label>
+        <br />
+        <br />
+       <asp:Label ID="quantityLabel" runat="server" Text="Quantity: " ></asp:Label>
+       <asp:TextBox ID="quantityTextBox" Text = "0" runat="server"></asp:TextBox>
+       <asp:RangeValidator ID = "quantityValidation" runat="server" ErrorMessage="A quantity of at least 1 is required."
+            ControlToValidate ="quantityTextBox" type="double" 
+            MinimumValue="1" MaximumValue="1000">
+       </asp:RangeValidator>
+        <br />
+        <br />
+    <asp:UpdatePanel  ID="UpdatePanel2" runat="server">
+        <ContentTemplate>
+        <asp:Button ID="addButton"  runat="server" Text="Add to Cart" OnClick="addButton_Click" />
+        </ContentTemplate>         
+    </asp:UpdatePanel>
+    
 
-    <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1" GroupItemCount="3" OnSelectedIndexChanged="ListView1_SelectedIndexChanged" >
-
-        <AlternatingItemTemplate>
-            <td runat="server" style="">
-                <asp:HyperLink NavigateUrl="~/ShoppingPages/addProduct.aspx"  Text='<%# Eval("Name") %>' runat="server" ID="NameLabel" /><br />
-                <asp:Label Text='<%# Eval("ShortDescription") %>' runat="server" ID="ShortDescriptionLabel" /><br />
-                ImageFile:
-                <asp:Label Text='<%# Eval("ImageFile") %>' runat="server" ID="ImageFileLabel" /><br />
-                <asp:Label Text='<%# Eval("UnitPrice") %>' runat="server" ID="UnitPriceLabel" /><br />
-            </td>
-        </AlternatingItemTemplate>
-        <EditItemTemplate>
-            <td runat="server" style="">Name:
-                <asp:TextBox Text='<%# Bind("Name") %>' runat="server" ID="NameTextBox" /><br />
-                ShortDescription:
-                <asp:TextBox Text='<%# Bind("ShortDescription") %>' runat="server" ID="ShortDescriptionTextBox" /><br />
-                ImageFile:
-                <asp:TextBox Text='<%# Bind("ImageFile") %>' runat="server" ID="ImageFileTextBox" /><br />
-                UnitPrice:
-                <asp:TextBox Text='<%# Bind("UnitPrice") %>' runat="server" ID="UnitPriceTextBox" /><br />
-                <asp:Button runat="server" CommandName="Update" Text="Update" ID="UpdateButton" /><br />
-                <asp:Button runat="server" CommandName="Cancel" Text="Cancel" ID="CancelButton" /><br />
-            </td>
-        </EditItemTemplate>
-        <EmptyDataTemplate>
-            <table runat="server" style="">
-                <tr>
-                    <td>No data was returned.</td>
-                </tr>
-            </table>
-        </EmptyDataTemplate>
-        <EmptyItemTemplate>
-            <td runat="server" />
-        </EmptyItemTemplate>
-        <GroupTemplate>
-            <tr runat="server" id="itemPlaceholderContainer">
-                <td runat="server" id="itemPlaceholder"></td>
-            </tr>
-        </GroupTemplate>
-        <InsertItemTemplate>
-            <td runat="server" style="">Name:
-                <asp:TextBox Text='<%# Bind("Name") %>' runat="server" ID="NameTextBox" /><br />
-                ShortDescription:
-                <asp:TextBox Text='<%# Bind("ShortDescription") %>' runat="server" ID="ShortDescriptionTextBox" /><br />
-                ImageFile:
-                <asp:TextBox Text='<%# Bind("ImageFile") %>' runat="server" ID="ImageFileTextBox" /><br />
-                UnitPrice:
-                <asp:TextBox Text='<%# Bind("UnitPrice") %>' runat="server" ID="UnitPriceTextBox" /><br />
-                <asp:Button runat="server" CommandName="Insert" Text="Insert" ID="InsertButton" /><br />
-                <asp:Button runat="server" CommandName="Cancel" Text="Clear" ID="CancelButton" /><br />
-            </td>
-        </InsertItemTemplate>
-        <ItemTemplate>
-            <td runat="server" style="" visible="True">
-                <asp:HyperLink NavigateUrl="~/ShoppingPages/addProduct.aspx" Text='<%# Eval("Name") %>' runat="server" ID="NameLabel" /><br />
-                <asp:Label Text='<%# Eval("ShortDescription") %>' runat="server" ID="ShortDescriptionLabel" /><br />
-                ImageFile:
-                <asp:Label Text='<%# Eval("ImageFile") %>' runat="server" ID="ImageFileLabel" /><br />
-                <asp:Label Text='<%# Eval("UnitPrice") %>' runat="server" ID="UnitPriceLabel" /><br />
-            </td>
-        </ItemTemplate>
-        <LayoutTemplate>
-            <table runat="server">
-                <tr runat="server">
-                    <td runat="server">
-                        <table runat="server" id="groupPlaceholderContainer" style="" border="0">
-                            <tr runat="server" id="groupPlaceholder"></tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr runat="server">
-                    <td runat="server" style="">
-                        <asp:DataPager runat="server" PageSize="12" ID="DataPager2">
-                            <Fields>
-                                <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False"></asp:NextPreviousPagerField>
-                                <asp:NumericPagerField></asp:NumericPagerField>
-                                <asp:NextPreviousPagerField ButtonType="Button" ShowLastPageButton="True" ShowNextPageButton="False" ShowPreviousPageButton="False"></asp:NextPreviousPagerField>
-                            </Fields>
-                        </asp:DataPager>
-                    </td>
-                </tr>
-            </table>
-        </LayoutTemplate>
-        <SelectedItemTemplate>
-            <td runat="server" style="">
-                <asp:HyperLink Text='<%# Eval("Name") %>' runat="server" ID="NameLabel" /><br />
-                <asp:Label Text='<%# Eval("ShortDescription") %>' runat="server" ID="ShortDescriptionLabel" /><br />
-                ImageFile:
-                <asp:Label Text='<%# Eval("ImageFile") %>' runat="server" ID="ImageFileLabel" /><br />
-                <asp:Label Text='<%# Eval("UnitPrice") %>' runat="server" ID="UnitPriceLabel" /><br />
-            </td>
-        </SelectedItemTemplate>
-    </asp:ListView>
   </asp:Content>

@@ -34,7 +34,7 @@ public partial class ShoppingPages_addProduct : System.Web.UI.Page
         p.UnitPrice = (decimal)row["UnitPrice"];
         p.ImageFile = row["ImageFile"].ToString();
         return p;
-         
+
     }
 
     protected void purchaseButton_Click(object sender, EventArgs e)

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Sql;
+using System.Data;
 
 public partial class ShoppingPages_Checkout : System.Web.UI.Page
 {
@@ -30,6 +32,13 @@ public partial class ShoppingPages_Checkout : System.Web.UI.Page
             cityBox.Text = customer.City;
             stateDdl.SelectedValue = customer.State;
             zipBox.Text = Convert.ToString(customer.Zip);
+            cardBox.Text = customer.cardNumber;
+            expBox.Text = customer.expDate;
+            codeBox.Text = customer.secNumber;
+            shipList.Items[0].Selected = customer.newProducts;
+            shipList.Items[1].Selected = customer.artFairs;
+            shipList.Items[2].Selected = customer.discounts;
+            shipList.Items[3].Selected = customer.specialOffers;
             //Fill with other data when implemented
         }
     }
@@ -40,16 +49,19 @@ public partial class ShoppingPages_Checkout : System.Web.UI.Page
             customer = new Customer();
         customer.FirstName = firstNameBox.Text;
         customer.LastName = lastNameBox.Text;
-        customer.Email = Convert.ToChar(emailBox.Text);
-        customer.Phone = Convert.ToChar(phoneBox.Text);
+        customer.Email = emailBox.Text;
+        customer.Phone = phoneBox.Text;
         customer.Address = addressBox.Text;
         customer.City = cityBox.Text;
         customer.State = stateDdl.SelectedValue;
         customer.Zip = Convert.ToInt32(zipBox.Text);
-        customer.newProducts = offerList.Items[0].Selected;
-        customer.artFairs = offerList.Items[1].Selected;
-        customer.discounts = offerList.Items[2].Selected;
-        customer.specialOffers = offerList.Items[3].Selected;
+        customer.cardNumber = cardBox.Text;
+        customer.expDate = expBox.Text;
+        customer.secNumber = codeBox.Text;
+        customer.newProducts = shipList.Items[0].Selected;
+        customer.artFairs = shipList.Items[1].Selected;
+        customer.discounts = shipList.Items[2].Selected;
+        customer.specialOffers = shipList.Items[3].Selected;
         Session["Customer"] = customer;
     }
     protected void cancelBtn_Click(object sender, EventArgs e)
@@ -60,6 +72,45 @@ public partial class ShoppingPages_Checkout : System.Web.UI.Page
     }
     protected void confirmBtn_Click(object sender, EventArgs e)
     {
-        this.GetCustomerData();
+       
+        if (Page.IsValid)
+        {
+            this.GetCustomerData();
+            SqlDataSource2.InsertParameters["CustEmail"].DefaultValue = emailBox.Text;
+            SqlDataSource2.InsertParameters["OrderDate"].DefaultValue = Convert.ToString(DateTime.Now);
+            SqlDataSource2.InsertParameters["CustEmail"].DefaultValue = emailBox.Text;
+            SqlDataSource2.InsertParameters["ShipMethod"].DefaultValue = shipList.SelectedValue;
+            SqlDataSource2.InsertParameters["CreditCardNumber"].DefaultValue = cardBox.Text;
+            SqlDataSource2.InsertParameters["ExpirationDate"].DefaultValue = expBox.Text;
+
+            try
+            {
+                SqlDataSource2.Insert();
+
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = "A database error has occured" + "Message: " + ex.Message;
+            }
+
+            SqlDataSource3.InsertParameters["LastName"].DefaultValue = lastNameBox.Text;
+            SqlDataSource3.InsertParameters["FirstName"].DefaultValue = firstNameBox.Text;
+            SqlDataSource3.InsertParameters["Address"].DefaultValue = addressBox.Text;
+            SqlDataSource3.InsertParameters["City"].DefaultValue = cityBox.Text;
+            SqlDataSource3.InsertParameters["State"].DefaultValue = stateDdl.SelectedValue;
+            SqlDataSource3.InsertParameters["ZipCode"].DefaultValue = zipBox.Text;
+            SqlDataSource3.InsertParameters["PhoneNumber"].DefaultValue = phoneBox.Text;
+            SqlDataSource3.InsertParameters["Email"].DefaultValue = emailBox.Text;
+            try
+            {
+                SqlDataSource3.Insert();
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = "A database error has occured" + "Message: " + ex.Message;
+            }
+        }
+        Response.Redirect("~/ShoppingPages/Receipt.aspx/");
+
     }
 }

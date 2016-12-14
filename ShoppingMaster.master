@@ -12,7 +12,6 @@
     <form id="form1" runat="server">
     <div>
         <asp:Menu ID="NavMenu" runat="server" >
-
             <Items>
                 <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home" ToolTip="Home Page" Value="Home"></asp:MenuItem>
                 <asp:MenuItem Selectable="False" Text="Shopping" ToolTip="Links to various shopping-related pages" Value="Shopping">
@@ -29,5 +28,7 @@
         </asp:ContentPlaceHolder>
     </div>
     </form>
+           <center><footer><small> Contact Information: (555) 555-5555 artisan@smokingkiln.net 123 Fake St. LaPorte, IN</small> </footer></center>
+
 </body>
 </html>
