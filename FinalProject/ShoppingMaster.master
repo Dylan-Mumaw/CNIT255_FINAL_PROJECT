@@ -1,32 +1,52 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ShoppingMaster.master.cs" Inherits="ShoppingMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ShoppingMaster.master.cs"  Inherits="ShoppingMaster" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <link = "StyleSheets/Master.css" rel="stylesheet" />
     <title></title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:Menu ID="NavMenu" runat="server" >
 
+    <div id="banner"><h1 id="siteTitle">Smoking Kiln</h1></div>
+
+    <form id="form1" runat="server">
+    <div id="wrapper">
+        <aside>
+        <asp:Menu ID="NavMenu" runat="server" >
             <Items>
+                <asp:MenuItem NavigateUrl="~/ShoppingPages/Navigation.aspx" Text="Navigation" Value="Navigation"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home" ToolTip="Home Page" Value="Home"></asp:MenuItem>
                 <asp:MenuItem Selectable="False" Text="Shopping" ToolTip="Links to various shopping-related pages" Value="Shopping">
                     <asp:MenuItem NavigateUrl="~/ShoppingPages/Cart.aspx" Text="Your Cart" ToolTip="View currently selected products" Value="Your Cart"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Products.aspx" Text="Products" ToolTip="Products" Value="Products"></asp:MenuItem>
                 </asp:MenuItem>
                 <asp:MenuItem Selectable="False" Text="User Info" ToolTip="View past orders, invoices, etc." Value="User Info">
                     <asp:MenuItem NavigateUrl="~/ShoppingPages/Orders.aspx" Text="Orders" ToolTip="View past orders." Value="Orders"></asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/ShoppingPages/Invoices.aspx" Text="Invoices" ToolTip="View invoices for past orders." Value="Invoices"></asp:MenuItem>
                 </asp:MenuItem>
+                <asp:MenuItem Selectable="false" Text="Maintenance" ToolTip="Maintenance pages for admins" Value="Maintenance">
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/CategoryMaintenance.aspx" Text="Category Maintenance" ToolTip="Edit categories" Value="Category Maintenance"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/CustomerMaintenance.aspx" Text="Customer Maintenance" ToolTip="Edit customer list" Value="Customer Maintenance"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/InvoiceMaintenance.aspx" Text="Invoice Maintenance" ToolTip="Edit invoices" Value="Invoice Maintenance"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/ProductMaintenance.aspx" Text="Product Maintenance" ToolTip="Edit products" Value="Product Maintenance"></asp:MenuItem>
+                </asp:MenuItem>
             </Items>
         </asp:Menu>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
+        </aside>
+      </div>
+        <div id="formWrapper">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>        
+        </div>
+
+
+
     </form>
+           <center><footer><small> Contact Information: (555) 555-5555 artisan@smokingkiln.net 123 Fake St. LaPorte, IN</small> </footer></center>
+
 </body>
 </html>

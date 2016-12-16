@@ -5,12 +5,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="StyleSheets/Master.css" rel="stylesheet" />
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
+    <div id="banner">
+    <asp:ContentPlaceHolder ID="bannerPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+    </div>
+
     <form id="form1" runat="server">
-    <div>
+    <div id="wrapper">
+    <aside>
+     <asp:Menu ID="NavMenu" runat="server" >
+            <Items>
+                <asp:MenuItem NavigateUrl="~/ShoppingPages/Navigation.aspx" Text="Navigation" Value="Navigation"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/Home.aspx" Text="Home" ToolTip="Home Page" Value="Home"></asp:MenuItem>
+                <asp:MenuItem Selectable="False" Text="Shopping" ToolTip="Links to various shopping-related pages" Value="Shopping">
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Cart.aspx" Text="Your Cart" ToolTip="View currently selected products" Value="Your Cart"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Products.aspx" Text="Products" ToolTip="Products" Value="Products"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Selectable="False" Text="User Info" ToolTip="View past orders, invoices, etc." Value="User Info">
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Orders.aspx" Text="Orders" ToolTip="View past orders." Value="Orders"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/ShoppingPages/Invoices.aspx" Text="Invoices" ToolTip="View invoices for past orders." Value="Invoices"></asp:MenuItem>
+                </asp:MenuItem>
+                <asp:MenuItem Selectable="false" Text="Maintenance" ToolTip="Maintenance pages for admins" Value="Maintenance">
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/CategoryMaintenance.aspx" Text="Category Maintenance" ToolTip="Edit categories" Value="Category Maintenance"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/CustomerMaintenance.aspx" Text="Customer Maintenance" ToolTip="Edit customer list" Value="Customer Maintenance"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/InvoiceMaintenance.aspx" Text="Invoice Maintenance" ToolTip="Edit invoices" Value="Invoice Maintenance"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/MaintenancePages/ProductMaintenance.aspx" Text="Product Maintenance" ToolTip="Edit products" Value="Product Maintenance"></asp:MenuItem>
+                </asp:MenuItem>
+            </Items>
+        </asp:Menu>
+
+    </aside>
+    </div>
+
+
+    <div id="formWrapper">
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>

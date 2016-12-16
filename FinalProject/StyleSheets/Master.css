@@ -1,0 +1,35 @@
+﻿body {
+
+}
+
+aside {
+    float: left;
+    width: 100px;
+}
+
+#ContentPlaceHolder1 {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    float: right;
+}
+
+#wrapper {
+    float: left;
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+
+
+#formWrapper {
+    float: right;
+    margin-right: 200px;
+    padding: 10px;
+}
+
+#form1 {
+    float: left;
+}
